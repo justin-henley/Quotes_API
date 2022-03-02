@@ -36,7 +36,7 @@ if ($result->rowCount() > 0) {
     }
 
     // Turn to JSON and output
-    print_r(json_encode($catArr));
+    echo json_encode($catArr);
 } else {
     // No categories found 
     echo json_encode(['message' => 'No Categories Found']);
