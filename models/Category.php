@@ -151,11 +151,16 @@ class Category
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
 
+        // Return early if no id provided
+        if (!$this->id) {
+            printf("Error: Provide an id.\n");
+            return false;
+        }
+
         // Bind id
         $stmt->bindValue(':id', $this->id);
 
-        // Execute the statement
-        // TODO is this the correct error behavior for this project?
+        // Execute the statement        
         if ($stmt->execute()) {
             return true;
         } else {
