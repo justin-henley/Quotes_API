@@ -37,6 +37,6 @@ if (empty($category->category) || empty($category->id)) {
 } else {
     // Update operation failed
     echo json_encode([
-        'message' => 'Category Not Created'
+        'message' => 'Category Not Updated'
     ]);
 }

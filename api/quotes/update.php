@@ -41,6 +41,6 @@ if (empty($quote->id) || empty($quote->quote) || empty($quote->authorId) || empt
 } else {
     // Update operation failed
     echo json_encode([
-        'message' => 'Quote Not Created'
+        'message' => 'Quote Not Updated'
     ]);
 }
