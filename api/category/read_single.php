@@ -29,7 +29,7 @@ if ($category->category) {
         'category' => $category->category,
     ];
 
-    // Convert to JSON and output
+    // Convert to JSON and output 
     echo (json_encode($catArr));
 } else {
     // Create error message
