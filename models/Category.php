@@ -71,7 +71,29 @@ class Category
     // Create a new category
     public function create()
     {
-        // TODO
+        // Create query
+        $query =
+            "INSERT INTO {$this->table}
+            SET
+                author = :author";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->author = htmlspecialchars(strip_tags($this->author));
+
+        // Bind author
+        $stmt->bindValue(':author', $this->author);
+
+        // Execute the statement
+        // TODO is this the correct error behavior for this project?
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            // Print an error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+        }
     }
 
     // Update an existing category
