@@ -39,6 +39,12 @@ class Category
     // Read a single category by id
     public function readSingle()
     {
+        // Return early if there is no ID
+        if (!$this->id) {
+            printf("Error: Provide a Category ID.\n");
+            return;
+        }
+
         // Create query
         $query =
             "SELECT
@@ -53,6 +59,9 @@ class Category
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
 
+        // Clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
         // Bind ID
         $stmt->bindValue(':id', $this->id);
 
@@ -64,22 +73,11 @@ class Category
 
         // Store the fetched data in this object instance
         $this->category = $row['category'];
-
-        // TODO how to handle a non-existing id
     }
 
     // Create a new category
     public function create()
     {
-        // Create query
-        $query =
-            "INSERT INTO {$this->table}
-            SET
-                category = :category";
-
-        // Prepare the statement
-        $stmt = $this->conn->prepare($query);
-
         // Clean data
         $this->category = htmlspecialchars(strip_tags($this->category));
 
@@ -88,6 +86,15 @@ class Category
             printf("Error: Category cannot be null or empty string.\n");
             return false;
         }
+
+        // Create query
+        $query =
+            "INSERT INTO {$this->table}
+            SET
+                category = :category";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
 
         // Bind category
         $stmt->bindValue(':category', $this->category);
@@ -105,15 +112,6 @@ class Category
     // Update an existing category
     public function update()
     {
-        // Create query
-        $query =
-            "UPDATE {$this->table}
-            SET
-                category = :category";
-
-        // Prepare the statement
-        $stmt = $this->conn->prepare($query);
-
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->category = htmlspecialchars(strip_tags($this->category));
@@ -123,6 +121,15 @@ class Category
             printf("Error: Provide id and category.\n");
             return false;
         }
+
+        // Create query
+        $query =
+            "UPDATE {$this->table}
+            SET
+                category = :category";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
 
         // Bind category
         $stmt->bindValue(':category', $this->category);
@@ -140,14 +147,6 @@ class Category
     // Delete Category
     public function delete()
     {
-        // Create query
-        $query =
-            "DELETE FROM {$this->table}
-            WHERE id = :id";
-
-        // Prepare the statement
-        $stmt = $this->conn->prepare($query);
-
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
 
@@ -156,6 +155,14 @@ class Category
             printf("Error: Provide an id.\n");
             return false;
         }
+
+        // Create query
+        $query =
+            "DELETE FROM {$this->table}
+            WHERE id = :id";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
 
         // Bind id
         $stmt->bindValue(':id', $this->id);
