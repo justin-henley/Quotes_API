@@ -21,21 +21,21 @@ $data = json_decode(file_get_contents("php://input"));
 // Get author name from data
 $author->author = $data->author;
 
-// Attempt to create
+// Attempt to update
 if (empty($author->author)) {
     // Missing parameters
     echo json_encode([
         'message' => 'Missing Required Parameters'
     ]);
-} else if ($author->create()) {
-    // Create operation successful
+} else if ($author->update()) {
+    // update operation successful
     echo json_encode([
         'id' => $connection->lastInsertId(),
         'author' => $author->author,
     ]);
 } else {
-    // Create operation failed
+    // update operation failed
     echo json_encode([
-        'message' => 'Author Not Created'
+        'message' => 'Author Not updated'
     ]);
 }
