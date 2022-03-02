@@ -147,25 +147,24 @@ class Category
     // Delete Category
     public function delete()
     {
+        echo "in\n";
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
-
+        echo "cleaned\n";
         // Return early if no id provided
         if (!$this->id) {
             return false;
         }
 
         // Create query
-        $query =
-            "DELETE FROM {$this->table}
-            WHERE id = :id";
+        $query = "DELETE FROM {$this->table} WHERE id = :id";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
-
+        echo "prep\n";
         // Bind id
         $stmt->bindValue(':id', $this->id);
-
+        echo "bound\n";
         // Execute the statement        
         if ($stmt->execute()) {
             return true;
