@@ -19,7 +19,7 @@ $author = new Author($connection);
 $data = json_decode(file_get_contents("php://input"));
 
 // Get ID and author to update from data
-$category->id = $data->id;
+$author->id = $data->id;
 $author->author = $data->author;
 
 // Attempt to update
