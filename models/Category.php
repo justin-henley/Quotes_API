@@ -85,7 +85,7 @@ class Category
 
         // Return early if no category provided
         if (!$this->category || $this->category === "") {
-            printf("Error: Category cannot be null or empty string");
+            printf("Error: Category cannot be null or empty string.\n");
             return false;
         }
 
