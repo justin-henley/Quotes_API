@@ -119,6 +119,7 @@ class Author
         $stmt->bindValue(':author', $this->author);
         $stmt->bindValue(':id', $this->id);
 
+        // TODO check row count to see if any rows affected
         // Execute the statement
         if ($stmt->execute()) {
             return true;

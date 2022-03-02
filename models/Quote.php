@@ -120,13 +120,12 @@ class Quote
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->quote = htmlspecialchars(strip_tags($this->quote));
-        $this->authorId = htmlspecialchars(strip_tags($this->authorId));
-        $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
 
         // Bind quote
         $stmt->bindValue(':quote', $this->quote);
         $stmt->bindValue(':id', $this->id);
 
+        // TODO check row count to see if any rows affected
         // Execute the statement
         if ($stmt->execute()) {
             return true;
