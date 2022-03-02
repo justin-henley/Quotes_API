@@ -112,9 +112,7 @@ class Quote
             SET
                 quote = :quote
             WHERE
-                id = :id,
-                authorId = :authorId,
-                categoryId = :categoryId";
+                id = :id";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
