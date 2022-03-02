@@ -22,7 +22,7 @@ $data = json_decode(file_get_contents("php://input"));
 $category->category = $data->category;
 
 // Create Category entry in database
-if ($cat->create()) {
+if ($category->create()) {
     echo json_encode(['message' => 'Category Created']);
 } else {
     echo json_encode(['message' => 'Category Not Created']);
