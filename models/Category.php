@@ -83,11 +83,16 @@ class Category
         // Clean data
         $this->category = htmlspecialchars(strip_tags($this->category));
 
+        // Return early if no category provided
+        if (!$this->category || $this->category === "") {
+            printf("Error: Category cannot be null or empty string");
+            return false;
+        }
+
         // Bind category
         $stmt->bindValue(':category', $this->category);
 
         // Execute the statement
-        // TODO is this the correct error behavior for this project?
         if ($stmt->execute()) {
             return true;
         } else {
