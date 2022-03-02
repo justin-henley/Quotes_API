@@ -147,7 +147,7 @@ class Category
     // Delete Category
     public function delete()
     {
-        echo "in\n";
+        /* echo "in\n";
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
         echo "cleaned\n";
@@ -170,6 +170,27 @@ class Category
             return true;
         } else {
             // Print an error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        } */
+
+        // Create query
+        $query = "DELETE FROM {$this->table} WHERE id= :id";
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean id value
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // Bind id
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute query
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            // Print error if something goes wrong
             printf("Error: %s.\n", $stmt->error);
             return false;
         }
