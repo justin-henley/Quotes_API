@@ -39,7 +39,33 @@ class Category
     // Read a single category by id
     public function readSingle()
     {
-        // TODO
+        // Create query
+        $query =
+            "SELECT
+                id,
+                category
+            FROM
+                {$this->table}
+            WHERE
+                id = :id
+            LIMIT 0,1";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind ID
+        $stmt->bindValue(':id', $this->id);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch the single row of data from the db
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Store the fetched data in this object instance
+        $this->category = $row['category'];
+
+        // TODO how to handle a non-existing id
     }
 
     // Create a new category
