@@ -21,13 +21,17 @@ $category->id = isset($_GET['id'])
 // Get category data
 $category->readSingle();
 
-// Create results array
-$catArr = [
-    'id' => $category->id,
-    'category' => $category->category,
-];
+// Check if a category was returned for the specified ID (category exists in database)
+if ($category->category) {
+    // Create results array
+    $catArr = [
+        'id' => $category->id,
+        'category' => $category->category,
+    ];
 
-// Convert to JSON and output
-print_r(json_encode($catArr));
-
-// TODO error handling
+    // Convert to JSON and output
+    echo (json_encode($catArr));
+} else {
+    // Create error message
+    echo json_encode(['message' => 'categoryId Not Found']);
+}
