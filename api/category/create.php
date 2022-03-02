@@ -21,8 +21,12 @@ $data = json_decode(file_get_contents("php://input"));
 // Get category name from data
 $category->category = $data->category;
 
+// Check for missing paramters
+if (!$category->category || $category->category === "") {
+    echo json_encode(['message' => 'Missing Required Parameters']);
+}
 // Create Category entry in database
-if ($category->create()) {
+else if ($category->create()) {
     echo json_encode(['message' => 'Category Created']);
 } else {
     echo json_encode(['message' => 'Category Not Created']);

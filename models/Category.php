@@ -77,14 +77,6 @@ class Category
     // Create a new category
     public function create()
     {
-        // Clean data
-        $this->category = htmlspecialchars(strip_tags($this->category));
-
-        // Return early if no category provided
-        if (!$this->category || $this->category === "") {
-            return false;
-        }
-
         // Create query
         $query =
             "INSERT INTO {$this->table}
@@ -93,6 +85,9 @@ class Category
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->category = htmlspecialchars(strip_tags($this->category));
 
         // Bind category
         $stmt->bindValue(':category', $this->category);
