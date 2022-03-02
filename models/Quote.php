@@ -126,8 +126,6 @@ class Quote
         // Bind quote
         $stmt->bindValue(':quote', $this->quote);
         $stmt->bindValue(':id', $this->id);
-        $stmt->bindValue(':authorId', $this->authorId);
-        $stmt->bindValue(':categoryId', $this->categoryId);
 
         // Execute the statement
         if ($stmt->execute()) {
