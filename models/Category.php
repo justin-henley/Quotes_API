@@ -147,10 +147,10 @@ class Category
     // Delete Category
     public function delete()
     {
-        /* echo "in\n";
+        // TODO fails if the category is a foreign key for a quote. Awaiting feedback on how to proceed.
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
-        echo "cleaned\n";
+
         // Return early if no id provided
         if (!$this->id) {
             return false;
@@ -161,37 +161,16 @@ class Category
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
-        echo "prep\n";
+
         // Bind id
         $stmt->bindValue(':id', $this->id);
-        echo "bound\n";
+
         // Execute the statement        
         if ($stmt->execute()) {
             return true;
         } else {
             // Print an error if something goes wrong
             printf("Error: %s.\n", $stmt->error);
-            return false;
-        } */
-
-        // Create query
-        $query = "DELETE FROM {$this->table} WHERE id= :id";
-
-        // Prepare statement
-        $stmt = $this->conn->prepare($query);
-
-        // Clean id value
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        // Bind id
-        $stmt->bindParam(':id', $this->id);
-
-        // Execute query
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            // Print error if something goes wrong
-            printf("Error");
             return false;
         }
     }
