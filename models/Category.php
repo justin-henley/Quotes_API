@@ -39,6 +39,11 @@ class Category
     // Read a single category by id
     public function readSingle()
     {
+        // Return early if there is no ID
+        if (!$this->id) {
+            return;
+        }
+
         // Create query
         $query =
             "SELECT
@@ -77,7 +82,6 @@ class Category
 
         // Return early if no category provided
         if (!$this->category || $this->category === "") {
-            printf("Error: Category cannot be null or empty string.\n");
             return false;
         }
 
@@ -112,7 +116,6 @@ class Category
 
         // Return early if no id or category provided
         if (!$this->id || !$this->category || $this->category === "") {
-            printf("Error: Provide id and category.\n");
             return false;
         }
 
@@ -146,7 +149,6 @@ class Category
 
         // Return early if no id provided
         if (!$this->id) {
-            printf("Error: Provide an id.\n");
             return false;
         }
 
