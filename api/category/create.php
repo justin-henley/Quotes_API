@@ -27,7 +27,10 @@ if (empty($category->category)) {
 }
 // Create Category entry in database
 else if ($category->create()) {
-    echo json_encode(['message' => 'Category Created']);
+    echo json_encode([
+        'id' => $connection->lastInsertId(),
+        'category' => $category->category,
+    ]);
 } else {
     echo json_encode(['message' => 'Category Not Created']);
 }
