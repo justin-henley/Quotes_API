@@ -22,7 +22,7 @@ $data = json_decode(file_get_contents("php://input"));
 $category->category = $data->category;
 
 // Check for missing paramters
-if (!$category->category || $category->category === "") {
+if (empty($category->category)) {
     echo json_encode(['message' => 'Missing Required Parameters']);
 }
 // Create Category entry in database
