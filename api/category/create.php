@@ -21,16 +21,21 @@ $data = json_decode(file_get_contents("php://input"));
 // Get category name from data
 $category->category = $data->category;
 
-// Check for missing paramters
+// Attempt to update
 if (empty($category->category)) {
-    echo json_encode(['message' => 'Missing Required Parameters']);
-}
-// Create Category entry in database
-else if ($category->create()) {
+    // Missing parameters
+    echo json_encode([
+        'message' => 'Missing Required Parameters'
+    ]);
+} else if ($category->create()) {
+    // Create operation successful
     echo json_encode([
         'id' => $connection->lastInsertId(),
         'category' => $category->category,
     ]);
 } else {
-    echo json_encode(['message' => 'Category Not Created']);
+    // Create operation failed
+    echo json_encode([
+        'message' => 'Category Not Created'
+    ]);
 }

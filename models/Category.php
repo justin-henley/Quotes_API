@@ -105,15 +105,6 @@ class Category
     // Update an existing category
     public function update()
     {
-        // Clean data
-        $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->category = htmlspecialchars(strip_tags($this->category));
-
-        // Return early if no id or category provided
-        if (!$this->id || !$this->category || $this->category === "") {
-            return false;
-        }
-
         // Create query
         $query =
             "UPDATE {$this->table}
@@ -124,6 +115,10 @@ class Category
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->category = htmlspecialchars(strip_tags($this->category));
 
         // Bind category
         $stmt->bindValue(':category', $this->category);

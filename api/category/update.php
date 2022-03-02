@@ -18,15 +18,25 @@ $category = new Category($connection);
 // Get raw PUT data
 $data = json_decode(file_get_contents("php://input"));
 
-// Set ID to update
+// Get ID and category to update from data
 $category->id = $data->id;
-
-// Update category name property
 $category->category = $data->category;
 
-// Update Category entry in database
-if ($category->update()) {
-    echo json_encode(['message' => 'Category Created']);
+// Attempt to update
+if (empty($category->category) || empty($category->id)) {
+    // Missing parameters
+    echo json_encode([
+        'message' => 'Missing Required Parameters'
+    ]);
+} else if ($category->update()) {
+    // Update operation successful
+    echo json_encode([
+        'id' => $category->id,
+        'category' => $category->category,
+    ]);
 } else {
-    echo json_encode(['message' => 'Category Not Created']);
+    // Update operation failed
+    echo json_encode([
+        'message' => 'Category Not Created'
+    ]);
 }
