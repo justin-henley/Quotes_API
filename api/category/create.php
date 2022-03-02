@@ -21,7 +21,7 @@ $data = json_decode(file_get_contents("php://input"));
 // Get category name from data
 $category->category = $data->category;
 
-// Attempt to update
+// Attempt to create
 if (empty($category->category)) {
     // Missing parameters
     echo json_encode([
