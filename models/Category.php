@@ -123,13 +123,16 @@ class Category
         $query =
             "UPDATE {$this->table}
             SET
-                category = :category";
+                category = :category
+            WHERE
+                id = :id";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
 
         // Bind category
         $stmt->bindValue(':category', $this->category);
+        $stmt->bindValue(':id', $this->id);
 
         // Execute the statement
         if ($stmt->execute()) {
