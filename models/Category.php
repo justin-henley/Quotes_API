@@ -19,7 +19,21 @@ class Category
     // Read all categories
     public function read()
     {
-        // TODO
+        // Create query
+        $query =
+            "SELECT
+                id,
+                category
+            FROM
+                {$this->table}";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
+
+        // Execute the statement
+        $stmt->execute();
+
+        return $stmt;
     }
 
     // Read a single category by id
