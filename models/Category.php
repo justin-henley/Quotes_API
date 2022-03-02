@@ -39,11 +39,6 @@ class Category
     // Read a single category by id
     public function readSingle()
     {
-        // Return early if there is no ID
-        if (!$this->id) {
-            return;
-        }
-
         // Create query
         $query =
             "SELECT
