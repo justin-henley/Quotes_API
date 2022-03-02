@@ -18,11 +18,12 @@ $author = new Author($connection);
 // Get raw POST data
 $data = json_decode(file_get_contents("php://input"));
 
-// Get author name from data
+// Get ID and author to update from data
+$category->id = $data->id;
 $author->author = $data->author;
 
 // Attempt to update
-if (empty($author->author)) {
+if (empty($author->author) || empty($author->id)) {
     // Missing parameters
     echo json_encode([
         'message' => 'Missing Required Parameters'
@@ -30,7 +31,7 @@ if (empty($author->author)) {
 } else if ($author->update()) {
     // update operation successful
     echo json_encode([
-        'id' => $connection->lastInsertId(),
+        'id' => $author->id,
         'author' => $author->author,
     ]);
 } else {
