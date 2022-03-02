@@ -121,7 +121,9 @@ class Category
 
         // Execute the statement
         if ($stmt->execute()) {
-            return true;
+            // Check if a row was updated
+            if ($stmt->rowCount() === 1) return true;
+            else return false;
         } else {
             // Print an error if something goes wrong
             printf("Error: %s.\n", $stmt->error);
