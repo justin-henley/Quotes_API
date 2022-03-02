@@ -29,3 +29,5 @@ $catArr = [
 
 // Convert to JSON and output
 print_r(json_encode($catArr));
+
+// TODO error handling
