@@ -127,7 +127,6 @@ class Category
         $stmt->bindValue(':category', $this->category);
 
         // Execute the statement
-        // TODO is this the correct error behavior for this project?
         if ($stmt->execute()) {
             return true;
         } else {
