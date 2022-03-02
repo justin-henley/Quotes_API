@@ -117,6 +117,12 @@ class Category
         // Clean data
         $this->category = htmlspecialchars(strip_tags($this->category));
 
+        // Return early if no id or category provided
+        if (!$this->id || !$this->category || $this->category === "") {
+            printf("Error: Provide id and category.\n");
+            return false;
+        }
+
         // Bind category
         $stmt->bindValue(':category', $this->category);
 
