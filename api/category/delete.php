@@ -21,9 +21,20 @@ $data = json_decode(file_get_contents("php://input"));
 // Set ID to delete
 $category->id = $data->id;
 
-// Delete Category from database
-if ($category->delete()) {
-    echo json_encode(['message' => 'Category Deleted']);
+// Attempt to delete
+if (empty($category->id)) {
+    // Missing parameters
+    echo json_encode([
+        'message' => 'Missing Required Parameters'
+    ]);
+} else if ($category->delete()) {
+    // Delete operation successful
+    echo json_encode([
+        'id' => $category->id
+    ]);
 } else {
-    echo json_encode(['message' => 'Category Not Deleted']);
+    // Delete operation failed
+    echo json_encode([
+        'message' => 'Category Not Deleted'
+    ]);
 }

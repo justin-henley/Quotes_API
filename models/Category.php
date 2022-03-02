@@ -138,19 +138,15 @@ class Category
     public function delete()
     {
         // TODO fails if the category is a foreign key for a quote. Awaiting feedback on how to proceed.
-        // Clean data
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        // Return early if no id provided
-        if (!$this->id) {
-            return false;
-        }
 
         // Create query
         $query = "DELETE FROM {$this->table} WHERE id = :id";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
 
         // Bind id
         $stmt->bindValue(':id', $this->id);
