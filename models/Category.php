@@ -75,16 +75,16 @@ class Category
         $query =
             "INSERT INTO {$this->table}
             SET
-                author = :author";
+                category = :category";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
 
         // Clean data
-        $this->author = htmlspecialchars(strip_tags($this->author));
+        $this->category = htmlspecialchars(strip_tags($this->category));
 
-        // Bind author
-        $stmt->bindValue(':author', $this->author);
+        // Bind category
+        $stmt->bindValue(':category', $this->category);
 
         // Execute the statement
         // TODO is this the correct error behavior for this project?
@@ -93,13 +93,37 @@ class Category
         } else {
             // Print an error if something goes wrong
             printf("Error: %s.\n", $stmt->error);
+            return false;
         }
     }
 
     // Update an existing category
     public function update()
     {
-        // TODO
+        // Create query
+        $query =
+            "UPDATE {$this->table}
+            SET
+                category = :category";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->category = htmlspecialchars(strip_tags($this->category));
+
+        // Bind category
+        $stmt->bindValue(':category', $this->category);
+
+        // Execute the statement
+        // TODO is this the correct error behavior for this project?
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            // Print an error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
     }
 
     // Delete Category
