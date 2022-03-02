@@ -122,6 +122,7 @@ class Category
         // Execute the statement
         if ($stmt->execute()) {
             // Check if a row was updated
+            // TODO see if this works
             if ($stmt->rowCount() === 1) return true;
             else return false;
         } else {
