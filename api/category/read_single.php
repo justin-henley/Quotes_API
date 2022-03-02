@@ -16,7 +16,7 @@ $category = new Category($connection);
 // Get ID from URL
 $category->id = isset($_GET['id'])
     ? $_GET['id']
-    : die();
+    : null;
 
 // Get category data
 $category->readSingle();
