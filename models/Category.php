@@ -63,6 +63,7 @@ class Category
 
         // Bind ID
         $stmt->bindValue(':id', $this->id);
+        $stmt->bindValue(':test', "wat"); // TODO remove test
 
         // Execute the statement
         $stmt->execute();
@@ -164,6 +165,7 @@ class Category
 
         // Bind id
         $stmt->bindValue(':id', $this->id);
+
 
         // Execute the statement        
         if ($stmt->execute()) {
