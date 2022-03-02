@@ -129,6 +129,28 @@ class Category
     // Delete Category
     public function delete()
     {
-        // TODO
+        // Create query
+        $query =
+            "DELETE FROM {$this->table}
+            WHERE id = :id";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // Bind id
+        $stmt->bindValue(':id', $this->id);
+
+        // Execute the statement
+        // TODO is this the correct error behavior for this project?
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            // Print an error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+            return false;
+        }
     }
 }
