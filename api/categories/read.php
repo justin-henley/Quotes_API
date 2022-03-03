@@ -22,7 +22,6 @@ $result = $category->read();
 if ($result->rowCount() > 0) {
     // Create an array to store categories data
     $catArr = [];
-    $catArr['data'] = [];
 
     // Iterate over the rows
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -34,7 +33,7 @@ if ($result->rowCount() > 0) {
         ];
 
         // Push category entry to categories array
-        array_push($catArr['data'], $catEntry);
+        array_push($catArr, $catEntry);
     }
 
     // Turn to JSON and output

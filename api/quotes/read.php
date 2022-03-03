@@ -23,7 +23,6 @@ $result = $quote->read();
 if ($result->rowCount() > 0) {
     // Create an array to store quotes data
     $quoteArr = [];
-    $quoteArr['data'] = [];
 
     // Iterate over the rows
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -37,7 +36,7 @@ if ($result->rowCount() > 0) {
         ];
 
         // Push category entry to quotes array
-        array_push($quoteArr['data'], $quoteEntry);
+        array_push($quoteArr, $quoteEntry);
     }
 
     // Turn to JSON and output
