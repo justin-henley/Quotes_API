@@ -15,8 +15,12 @@ if ($method === 'OPTIONS') {
 // Choose the operation to carry out
 switch ($requestMethod) {
     case 'GET':
-        // TODO how to handle read vs read_single
-        require './read.php';
+        // If an id was provided, read a single author. Otherwise read all authors
+        if (isset($_GET['id'])) {
+            require './read_single.php';
+        } else {
+            require './read.php';
+        }
         break;
     case 'POST':
         require './create.php';
