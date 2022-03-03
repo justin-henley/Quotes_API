@@ -11,3 +11,19 @@ if ($method === 'OPTIONS') {
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
     header('Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With');
 }
+
+// Choose the operation to carry out
+switch ($method) {
+    case 'GET':
+        // TODO how to handle read vs read_single
+        break;
+    case 'POST':
+        require './create.php';
+        break;
+    case 'PUT':
+        require './update.php';
+        break;
+    case 'DELETE':
+        require './delete.php';
+        break;
+}
