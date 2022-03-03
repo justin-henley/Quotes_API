@@ -46,6 +46,6 @@ if ($quote->quote) {
 } else {
     // Read operation did not find a quote
     echo json_encode([
-        'message' => 'quoteId Not Found'
+        'message' => 'No Quotes Found'
     ]);
 }
