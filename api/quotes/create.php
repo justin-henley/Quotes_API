@@ -23,6 +23,8 @@ $quote->quote = $data->quote;
 $quote->authorId = $data->authorId;
 $quote->categoryId = $data->categoryId;
 
+// TODO when to check if the table has that author and id? Should fail to create with a message
+
 // Attempt to create
 if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)) {
     // Missing parameters
