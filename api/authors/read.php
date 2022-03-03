@@ -22,7 +22,6 @@ $result = $author->read();
 if ($result->rowCount() > 0) {
     // Create an array to store authors data
     $authorArr = [];
-    $authorArr['data'] = [];
 
     // Iterate over the rows
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -34,7 +33,7 @@ if ($result->rowCount() > 0) {
         ];
 
         // Push author entry to authors array
-        array_push($authorArr['data'], $authorEntry);
+        array_push($authorArr, $authorEntry);
     }
 
     // Turn to JSON and output
