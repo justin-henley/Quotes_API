@@ -82,7 +82,7 @@ class Author
         $stmt = $this->conn->prepare($query);
 
         // Clean data
-        $this->author = htmlspecialchars(strip_tags($this->author));
+        $this->author = htmlspecialchars(strip_tags($this->author), ENT_NOQUOTES);
 
         // Bind author
         $stmt->bindValue(':author', $this->author);
@@ -113,7 +113,7 @@ class Author
 
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->author = htmlspecialchars(strip_tags($this->author));
+        $this->author = htmlspecialchars(strip_tags($this->author), ENT_NOQUOTES);
 
         // Bind author
         $stmt->bindValue(':author', $this->author);

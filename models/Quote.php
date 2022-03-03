@@ -119,7 +119,7 @@ class Quote
 
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->quote = htmlspecialchars(strip_tags($this->quote, ENT_NOQUOTES));
+        $this->quote = htmlspecialchars(strip_tags($this->quote), ENT_NOQUOTES);
 
         // Bind quote
         $stmt->bindValue(':quote', $this->quote);

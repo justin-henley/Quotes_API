@@ -82,7 +82,7 @@ class Category
         $stmt = $this->conn->prepare($query);
 
         // Clean data
-        $this->category = htmlspecialchars(strip_tags($this->category));
+        $this->category = htmlspecialchars(strip_tags($this->category), ENT_NOQUOTES);
 
         // Bind category
         $stmt->bindValue(':category', $this->category);
@@ -113,7 +113,7 @@ class Category
 
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->category = htmlspecialchars(strip_tags($this->category));
+        $this->category = htmlspecialchars(strip_tags($this->category), ENT_NOQUOTES);
 
         // Bind category
         $stmt->bindValue(':category', $this->category);
