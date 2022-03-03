@@ -13,11 +13,16 @@ $connection = $database->connect();
 // Instantiate quote object
 $quote = new Quote($connection);
 
+// Check if a category or author was provided and store it
+$quote->authorId = isset($_GET['authorId'])
+    ? $_GET['authorId']
+    : null;
+$quote->categoryId = isset($_GET['categoryId'])
+    ? $_GET['categoryId']
+    : null;
+
 // Read all quote entries from database
 $result = $quote->read();
-
-// TODO error handling and messages
-// TODO allow for user providing a category id, author id, or both
 
 // Check if any quote results were returned
 if ($result->rowCount() > 0) {
