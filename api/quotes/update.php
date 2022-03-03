@@ -8,6 +8,9 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 include_once '../../config/Database.php';
 include_once '../../models/Quote.php';
 
+// TODO doesn't update author or category
+// MUST be able to update all fields but id
+
 // Instantiate new DB and connect
 $database = new Database();
 $connection = $database->connect();
