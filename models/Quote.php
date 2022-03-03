@@ -84,7 +84,7 @@ class Quote
         $stmt = $this->conn->prepare($query);
 
         // Clean data
-        $this->quote = htmlspecialchars(strip_tags($this->quote));
+        $this->quote = htmlspecialchars(strip_tags($this->quote), ENT_NOQUOTES);
         $this->authorId = htmlspecialchars(strip_tags($this->authorId));
         $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
 
