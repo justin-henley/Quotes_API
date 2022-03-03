@@ -16,20 +16,14 @@ $connection = $database->connect();
 $quote = new Quote($connection);
 
 // Get raw POST data
-$contents = file_get_contents("php://input");
-$data = json_decode($contents);
-echo $contents . "\n" . json_encode($data) . "\n" . json_encode($data->quote) . "\n";
+$data = json_decode(file_get_contents("php://input"));
 
 // Get quote name from data
 $quote->quote = $data->quote;
 $quote->authorId = $data->authorId;
 $quote->categoryId = $data->categoryId;
 
-echo json_encode($quote->quote) . "\n";
-
 // TODO when to check if the table has that author and id? Should fail to create with a message
-// TODO Why do special characters not work thru create function?
-// Might have to do with the JSON encode and decode?
 
 // Attempt to create
 if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)) {
