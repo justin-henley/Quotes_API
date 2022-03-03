@@ -30,6 +30,7 @@ if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)
         'message' => 'Missing Required Parameters'
     ]);
 } else if ($quote->create()) {
+    // TODO must display the names not ids for author and category. You'll need another request
     // Create operation successful
     echo json_encode([
         'id' => $connection->lastInsertId(),
