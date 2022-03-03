@@ -21,11 +21,41 @@ class Quote
     // Read all quotes
     public function read()
     {
+        // Build a WHERE statement if a category or author id is set
+        $where = "";
+
+        /* // Both are set
+        if ($this->categoryId && $this->authorId) {
+            $where = "WHERE categoryId = {$this->categoryId} AND authorId = {$this->authorId}";
+        } else {
+            // Only one of the two is set
+            if ($this->categoryId) {
+                $where = "WHERE categoryId = {$this->categoryId}";
+            }
+            if ($this->authorId) {
+                $where = "WHERE authorId = {$this->authorId}";
+            }
+        } */
+
+        // alt
+        if ($this->categoryId && $this->authorId) {
+            $args = [];
+            if ($this->categoryId) {
+                array_push($args, "categoryId = {$this->categoryId}");
+            }
+            if ($this->authorId) {
+                array_push($args, "authorId = {$this->authorId}");
+            }
+            $where = "WHERE " . implode(" AND ", $args);
+        }
+
+
         // Create query
         $query =
             "SELECT *
             FROM
-                {$this->table}";
+                {$this->table}
+            {$where}";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
