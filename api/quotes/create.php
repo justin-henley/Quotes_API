@@ -16,8 +16,9 @@ $connection = $database->connect();
 $quote = new Quote($connection);
 
 // Get raw POST data
-$data = json_decode(file_get_contents("php://input"));
-echo file_get_contents("php://input") . "\n";
+$contents = file_get_contents("php://input");
+$data = json_decode($contents);
+echo $contents . "\n";
 echo $data . "\n";
 
 // Get quote name from data
