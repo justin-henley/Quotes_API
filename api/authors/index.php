@@ -13,9 +13,10 @@ if ($method === 'OPTIONS') {
 }
 
 // Choose the operation to carry out
-switch ($method) {
+switch ($requestMethod) {
     case 'GET':
         // TODO how to handle read vs read_single
+        require './read.php';
         break;
     case 'POST':
         require './create.php';
