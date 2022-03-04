@@ -146,7 +146,7 @@ class Quote
         $stmt->bindValue(':id', $this->id);
 
         // Execute the statement and check row count to see if any rows affected
-        if ($stmt->execute() && $stmt->rowCount()) {
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
             return true;
         } else {
             // Print an error if something goes wrong
