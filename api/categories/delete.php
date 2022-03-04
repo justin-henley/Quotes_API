@@ -35,6 +35,6 @@ if (empty($category->id)) {
 } else {
     // Delete operation failed
     echo json_encode([
-        'message' => 'Category Not Deleted'
+        'message' => 'No Categories Found'
     ]);
 }

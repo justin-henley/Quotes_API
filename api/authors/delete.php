@@ -35,6 +35,6 @@ if (empty($author->id)) {
 } else {
     // Delete operation failed
     echo json_encode([
-        'message' => 'Author Not Deleted'
+        'message' => 'No Authors Found'
     ]);
 }
