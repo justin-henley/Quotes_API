@@ -124,6 +124,8 @@ class Quote
             "UPDATE {$this->table}
             SET
                 quote = :quote
+                authorId = :authorId
+                categoryId = :catgeoryId
             WHERE
                 id = :id";
 
@@ -136,11 +138,12 @@ class Quote
 
         // Bind quote
         $stmt->bindValue(':quote', $this->quote);
+        $stmt->bindValue(':authorId', $this->authorId);
+        $stmt->bindValue(':categoryId', $this->categoryId);
         $stmt->bindValue(':id', $this->id);
 
-        // TODO check row count to see if any rows affected
-        // Execute the statement
-        if ($stmt->execute()) {
+        // Execute the statement and check row count to see if any rows affected
+        if ($stmt->execute() && $stmt->rowCount()) {
             return true;
         } else {
             // Print an error if something goes wrong
