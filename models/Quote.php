@@ -42,7 +42,8 @@ class Quote
             FROM ((quotes
             INNER JOIN authors ON quotes.authorId = authors.id)
             INNER JOIN categories ON quotes.categoryId = categories.id)
-            {$where}";
+            {$where}
+            ORDER BY quotes.id";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
