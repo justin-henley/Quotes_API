@@ -222,15 +222,11 @@ class Quote
     {
         include_once '../../models/Category.php';
 
-        // Create an empty Quote object to hold results
-        $newQuote = new Quote($this->conn);
-        $newQuote->id = $this->id;
+        // Attempt to read the quote for the id in the current object
+        $result = $this->readSingle(); // returns the statement after executing db query
 
-        // Attempt to read that single category record
-        $newQuote->readSingle();
-
-        // If an category name exists in the category object now, the record exists, return true
-        if ($newQuote->quote) return true;
+        // If a row was returned return true
+        if ($result->rowCount()) return true;
         else return false;
     }
 }
