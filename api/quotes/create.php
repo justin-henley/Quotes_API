@@ -26,16 +26,26 @@ $quote->quote = $data->quote;
 $quote->authorId = $data->authorId;
 $quote->categoryId = $data->categoryId;
 
-// TODO when to check if the table has that author and id? Should fail to create with a message
+// Attempt to create the quote
+// Check all parameters are non-null, and category and author exist in the database
 
-/* // Attempt to create
 if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)) {
     // Missing parameters
     echo json_encode([
         'message' => 'Missing Required Parameters'
     ]);
+} else if (!authorExists($quote->authorId, $connection)) {
+    // Author not found in database
+    echo json_encode([
+        'message' => 'authorId Not Found'
+    ]);
+} else if (!categoryExists($quote->categoryId, $connection)) {
+    // Category not found in database
+    echo json_encode([
+        'message' => 'categoryId Not Found'
+    ]);
 } else if ($quote->create()) {
-    // TODO must display the names not ids for author and category. You'll need another request
+    // Category and Author both exist
     // Create operation successful
     echo json_encode([
         'id' => $connection->lastInsertId(),
@@ -48,46 +58,8 @@ if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)
     echo json_encode([
         'message' => 'Quote Not Created'
     ]);
-} */
-
-// TODO alt
-
-// Attempt to create
-
-
-if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)) {
-    // Missing parameters
-    echo json_encode([
-        'message' => 'Missing Required Parameters'
-    ]);
-} else {
-    // All parameters provided, but not guaranteed to exist in DB
-    if (!authorExists($quote->authorId, $connection)) {
-        // Author not found
-        echo json_encode([
-            'message' => 'authorId Not Found'
-        ]);
-    } else if (!categoryExists($quote->categoryId, $connection)) {
-        // Category not found
-        echo json_encode([
-            'message' => 'categoryId Not Found'
-        ]);
-    } else if ($quote->create()) {
-        // Category and Author both exist
-        // Create operation successful
-        echo json_encode([
-            'id' => $connection->lastInsertId(),
-            'quote' => $quote->quote,
-            'authorId' => $quote->authorId,
-            'categoryId' => $quote->categoryId,
-        ]);
-    } else {
-        // Create operation failed
-        echo json_encode([
-            'message' => 'Quote Not Created'
-        ]);
-    }
 }
+
 
 
 /**
