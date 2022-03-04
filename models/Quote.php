@@ -145,9 +145,10 @@ class Quote
         $stmt->bindValue(':categoryId', $this->categoryId);
         $stmt->bindValue(':id', $this->id);
         echo "bind";
+        echo $query . $stmt;
         // Execute the statement and check row count to see if any rows affected
         if ($stmt->execute()/*  && $stmt->rowCount() > 0 */) {
-            echo "execute";
+
             return true;
         } else {
             // Print an error if something goes wrong
