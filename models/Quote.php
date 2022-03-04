@@ -135,6 +135,9 @@ class Quote
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->quote = htmlspecialchars(strip_tags($this->quote), ENT_NOQUOTES);
+        $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
+        $this->authorId = htmlspecialchars(strip_tags($this->authorId));
+
 
         // Bind quote
         $stmt->bindValue(':quote', $this->quote);
