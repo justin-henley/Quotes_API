@@ -176,12 +176,12 @@ class Quote
      * 
      * @return {boolean} - True if author exists in database
      */
-    function authorExists()
+    public function authorExists()
     {
         include_once '../../models/Author.php';
 
         // Create an author object
-        $author = new Author($conn);
+        $author = new Author($this->conn);
         $author->id = $this->authorId;
 
         // Attempt to read that single author record
@@ -197,12 +197,12 @@ class Quote
      * 
      * @return {boolean} - True if author exists in database
      */
-    function categoryExists()
+    public function categoryExists()
     {
         include_once '../../models/Category.php';
 
         // Create an category object
-        $category = new Category($conn);
+        $category = new Category($this->conn);
         $category->id = $this->categoryId;
 
         // Attempt to read that single category record
