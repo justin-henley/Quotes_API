@@ -123,8 +123,8 @@ class Quote
         $query =
             "UPDATE {$this->table}
             SET
-                quote = :quote
-                authorId = :authorId
+                quote = :quote,
+                authorId = :authorId,
                 categoryId = :categoryId
             WHERE
                 id = :id";
