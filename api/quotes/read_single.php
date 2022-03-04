@@ -28,7 +28,7 @@ if (empty($quote->id)) {
 }
 
 // Get quote data
-$result->readSingle();
+$result = $quote->readSingle();
 
 // Check if a quote was returned for the specified ID (quote exists in database)
 if ($result->rowCount() > 0) {
@@ -39,10 +39,10 @@ if ($result->rowCount() > 0) {
 
     // Create results array
     $quoteArr = [
-        'id' => $row['id'],
-        'quote' => $row['quote'],
-        'author' => $row['author'],
-        'category' => $row['category'],
+        'id' => $id,
+        'quote' => $quote,
+        'author' => $author,
+        'category' => $category,
     ];
 
     // Convert to JSON and output 
