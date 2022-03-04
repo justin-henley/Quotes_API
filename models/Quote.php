@@ -78,13 +78,16 @@ class Quote
         // Execute the statement
         $stmt->execute();
 
+        // Return statement
+        return $stmt;
+        /* 
         // Fetch the single row of data from the db
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Store the fetched data in this object instance
         $this->quote = $row['quote'];
         $this->authorId = $row['authorId'];
-        $this->categoryId = $row['categoryId'];
+        $this->categoryId = $row['categoryId']; */
     }
 
     // Create a new quote

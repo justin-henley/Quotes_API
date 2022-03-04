@@ -28,17 +28,21 @@ if (empty($quote->id)) {
 }
 
 // Get quote data
-$quote->readSingle();
+$result->readSingle();
 
 // Check if a quote was returned for the specified ID (quote exists in database)
-if ($quote->quote) {
+if ($result->rowCount() > 0) {
     // Read operation found a quote
+    // Fetch the single row of data from the db and extract fields
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    extract($row);
+
     // Create results array
     $quoteArr = [
-        'id' => $quote->id,
-        'quote' => $quote->quote,
-        'author' => $quote->author,
-        'category' => $quote->category,
+        'id' => $id,
+        'quote' => $quote,
+        'author' => $author,
+        'category' => $category,
     ];
 
     // Convert to JSON and output 
