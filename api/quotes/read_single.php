@@ -39,10 +39,10 @@ if ($result->rowCount() > 0) {
 
     // Create results array
     $quoteArr = [
-        'id' => $id,
-        'quote' => $quote,
-        'author' => $author,
-        'category' => $category,
+        'id' => $row['id'],
+        'quote' => $row['quote'],
+        'author' => $row['author'],
+        'category' => $row['category'],
     ];
 
     // Convert to JSON and output 
