@@ -37,8 +37,8 @@ if ($quote->quote) {
     $quoteArr = [
         'id' => $quote->id,
         'quote' => $quote->quote,
-        'authorId' => $quote->authorId,
-        'categoryId' => $quote->categoryId,
+        'author' => $quote->author,
+        'category' => $quote->category,
     ];
 
     // Convert to JSON and output 
