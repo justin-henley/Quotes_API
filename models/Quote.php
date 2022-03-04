@@ -41,10 +41,9 @@ class Quote
             "SELECT quotes.id, quotes.quote, quotes.authorId, quotes.categoryId, authors.author, categories.category 
             FROM ((quotes
             INNER JOIN authors ON quotes.authorId = authors.id)
-            INNER JOIN categories ON quotes.categoryId = categories.id)";
+            INNER JOIN categories ON quotes.categoryId = categories.id)
+            {$where}";
 
-        // TODO remove
-        echo json_encode("where: " . $where . " query: " . $query);
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
 
