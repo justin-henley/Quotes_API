@@ -34,12 +34,12 @@ if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)
     echo json_encode([
         'message' => 'Missing Required Parameters'
     ]);
-} else if (!authorExists($quote->authorId, $connection)) {
+} else if (!$quote->authorExists()) {
     // Author not found in database
     echo json_encode([
         'message' => 'authorId Not Found'
     ]);
-} else if (!categoryExists($quote->categoryId, $connection)) {
+} else if (!$quote->categoryExists()) {
     // Category not found in database
     echo json_encode([
         'message' => 'categoryId Not Found'
@@ -58,52 +58,4 @@ if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)
     echo json_encode([
         'message' => 'Quote Not Created'
     ]);
-}
-
-
-
-/**
- * Function to check if an authorId exists in the database
- * 
- * @param {int} authorId - The author ID to check
- * @param {PDO} connection - An existing PDO database connection
- * @return {boolean} - True if author exists in database
- */
-function authorExists($authorId, $connection)
-{
-    include_once '../../models/Author.php';
-
-    // Create an author object
-    $author = new Author($connection);
-    $author->id = $authorId;
-
-    // Attempt to read that single author record
-    $author->readSingle();
-
-    // If an author name exists in the author object now, the record exists, return true
-    if ($author->author) return true;
-    else return false;
-}
-
-/**
- * Function to check if an categoryId exists in the database
- * 
- * @param {int} categoryId - The author ID to check
- * @param {PDO} connection - An existing PDO database connection
- * @return {boolean} - True if author exists in database
- */
-function categoryExists($categoryId, $connection)
-{
-    include_once '../../models/Category.php';
-
-    // Create an category object
-    $category = new Category($connection);
-    $category->id = $categoryId;
-
-    // Attempt to read that single category record
-    $category->readSingle();
-
-    // If an category name exists in the category object now, the record exists, return true
-    if ($category->category) return true;
-    else return false;
 }

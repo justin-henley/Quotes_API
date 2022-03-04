@@ -107,13 +107,8 @@ class Quote
         $stmt->bindValue(':categoryId', $this->categoryId);
 
         // Execute the statement
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            // Print an error if something goes wrong
-            printf("Error: %s.\n", $stmt->error);
-            return false;
-        }
+        // If the statement executes and affected a row, return true for success
+        return ($stmt->execute());
     }
 
     // Update an existing quote
@@ -174,5 +169,47 @@ class Quote
             printf("Error: %s.\n", $stmt->error);
             return false;
         }
+    }
+
+    /**
+     * Function to check if an authorId exists in the database
+     * 
+     * @return {boolean} - True if author exists in database
+     */
+    function authorExists()
+    {
+        include_once '../../models/Author.php';
+
+        // Create an author object
+        $author = new Author($conn);
+        $author->id = $this->authorId;
+
+        // Attempt to read that single author record
+        $author->readSingle();
+
+        // If an author name exists in the author object now, the record exists, return true
+        if ($author->author) return true;
+        else return false;
+    }
+
+    /**
+     * Function to check if an categoryId exists in the database
+     * 
+     * @return {boolean} - True if author exists in database
+     */
+    function categoryExists()
+    {
+        include_once '../../models/Category.php';
+
+        // Create an category object
+        $category = new Category($conn);
+        $category->id = $this->categoryId;
+
+        // Attempt to read that single category record
+        $category->readSingle();
+
+        // If an category name exists in the category object now, the record exists, return true
+        if ($category->category) return true;
+        else return false;
     }
 }
