@@ -131,24 +131,21 @@ class Quote
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
-        echo $query;
+
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->quote = htmlspecialchars(strip_tags($this->quote), ENT_NOQUOTES);
         $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
         $this->authorId = htmlspecialchars(strip_tags($this->authorId));
-        echo "clean";
 
         // Bind quote
         $stmt->bindValue(':quote', $this->quote);
         $stmt->bindValue(':authorId', $this->authorId);
         $stmt->bindValue(':categoryId', $this->categoryId);
         $stmt->bindValue(':id', $this->id);
-        echo "bind";
-        echo $stmt->debugDumpParams();
-        // Execute the statement and check row count to see if any rows affected
-        if ($stmt->execute()/*  && $stmt->rowCount() > 0 */) {
 
+        // Execute the statement and check row count to see if any rows affected
+        if ($stmt->execute() && $stmt->rowCount()) {
             return true;
         } else {
             // Print an error if something goes wrong
