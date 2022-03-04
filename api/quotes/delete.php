@@ -35,6 +35,6 @@ if (empty($quote->id)) {
 } else {
     // Delete operation failed
     echo json_encode([
-        'message' => 'Quote Not Deleted'
+        'message' => 'No Quotes Found'
     ]);
 }
