@@ -145,13 +145,8 @@ class Quote
         $stmt->bindValue(':id', $this->id);
 
         // Execute the statement and check row count to see if any rows affected
-        if ($stmt->execute() && $stmt->rowCount()) {
-            return true;
-        } else {
-            // Print an error if something goes wrong
-            printf("Error: %s.\n", $stmt->error);
-            return false;
-        }
+        // If the statement executes and affected a row, return true for success
+        return ($stmt->execute() && $stmt->rowCount());
     }
 
     // Delete quote
