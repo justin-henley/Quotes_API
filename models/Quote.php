@@ -131,7 +131,7 @@ class Quote
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
-        echo "prep";
+        echo $query;
         // Clean data
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->quote = htmlspecialchars(strip_tags($this->quote), ENT_NOQUOTES);
@@ -145,7 +145,7 @@ class Quote
         $stmt->bindValue(':categoryId', $this->categoryId);
         $stmt->bindValue(':id', $this->id);
         echo "bind";
-        echo $query . $stmt;
+        echo $stmt;
         // Execute the statement and check row count to see if any rows affected
         if ($stmt->execute()/*  && $stmt->rowCount() > 0 */) {
 
