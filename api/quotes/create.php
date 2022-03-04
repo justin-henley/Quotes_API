@@ -7,8 +7,8 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 
 include_once '../../config/Database.php';
 include_once '../../models/Quote.php';
-include_once '../../models/Author.php';
-include_once '../../models/Category.php';
+
+
 
 
 // Instantiate new DB and connect
@@ -71,6 +71,8 @@ if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)
  */
 function authorExists($authorId, $connection)
 {
+    include_once '../../models/Author.php';
+
     // Create an author object
     $author = new Author($connection);
     $author->id = $authorId;
@@ -92,6 +94,8 @@ function authorExists($authorId, $connection)
  */
 function categoryExists($categoryId, $connection)
 {
+    include_once '../../models/Category.php';
+
     // Create an category object
     $category = new Category($connection);
     $category->id = $categoryId;
