@@ -18,12 +18,9 @@ $author->id = isset($_GET['id'])
     ? $_GET['id']
     : null;
 
-// TODO this is ugly
 // Return early if parameters missing;
 if (empty($author->id)) {
-    echo json_encode([
-        'message' => 'Missing Required Parameters'
-    ]);
+    echo json_encode(['message' => 'Missing Required Parameters']);
     return;
 }
 
