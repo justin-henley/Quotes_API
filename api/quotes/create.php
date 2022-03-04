@@ -100,8 +100,16 @@ if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)
 
 function authorExists($authorId, $connection)
 {
-    // TODO
-    return false;
+    // Create an author object
+    $author = new Author($connection);
+    $author->id = $authorId;
+
+    // Attempt to read that single author record
+    $author->readSingle();
+
+    // If an author name exists in the author object now, the record exists, return true
+    if ($author->author) return true;
+    else return false;
 }
 
 /**
