@@ -36,7 +36,7 @@ class Quote
                 $where = "WHERE authorId = {$this->authorId}";
             }
         } */
-
+        // TODO decide on which version and comment
         // alt
         if ($this->categoryId && $this->authorId) {
             $args = [];
@@ -56,6 +56,11 @@ class Quote
             FROM
                 {$this->table}
             {$where}";
+
+        // TODO remove
+        echo json_encode(
+            "where: " . $where . "\nquery: " . $query
+        );
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
