@@ -34,7 +34,7 @@ $result->readSingle();
 if ($result->rowCount() > 0) {
     // Read operation found a quote
     // Fetch the single row of data from the db and extract fields
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
     extract($row);
 
     // Create results array
