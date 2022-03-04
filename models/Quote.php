@@ -59,7 +59,7 @@ class Quote
 
         // TODO remove
         echo json_encode(
-            "where: " . $where . "\nquery: " . $query
+            "ids: " . $this->categoryId . $this->authorId . "where: " . $where . "\nquery: " . $query
         );
 
         // Prepare the statement
