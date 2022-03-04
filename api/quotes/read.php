@@ -36,8 +36,8 @@ if ($result->rowCount() > 0) {
         $quoteEntry = [
             'id' => $id,
             'quote' => $quote,
-            'authorId' => $authorId,
-            'categoryId' => $categoryId,
+            'author' => $author,
+            'category' => $category,
         ];
 
         // Push category entry to quotes array
