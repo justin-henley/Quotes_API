@@ -16,8 +16,6 @@ $category = new Category($connection);
 // Read all category entries from database
 $result = $category->read();
 
-// TODO error handling and messages
-
 // Check if any category results were returned
 if ($result->rowCount() > 0) {
     // Create an array to store categories data

@@ -87,14 +87,9 @@ class Author
         // Bind author
         $stmt->bindValue(':author', $this->author);
 
-        // Execute the statement
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            // Print an error if something goes wrong
-            printf("Error: %s.\n", $stmt->error);
-            return false;
-        }
+        // Execute the statement and check row count to see if any rows affected
+        // If the statement executes and affected a row, return true for success
+        return ($stmt->execute() && $stmt->rowCount());
     }
 
     // Update an existing author
@@ -119,15 +114,9 @@ class Author
         $stmt->bindValue(':author', $this->author);
         $stmt->bindValue(':id', $this->id);
 
-        // TODO check row count to see if any rows affected
-        // Execute the statement
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            // Print an error if something goes wrong
-            printf("Error: %s.\n", $stmt->error);
-            return false;
-        }
+        // Execute the statement and check row count to see if any rows affected
+        // If the statement executes and affected a row, return true for success
+        return ($stmt->execute() && $stmt->rowCount());
     }
 
     // Delete author

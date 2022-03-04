@@ -8,8 +8,6 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 include_once '../../config/Database.php';
 include_once '../../models/Quote.php';
 
-// TODO check for valid author and category
-
 // Instantiate new DB and connect
 $database = new Database();
 $connection = $database->connect();

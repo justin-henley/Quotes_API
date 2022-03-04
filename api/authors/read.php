@@ -16,8 +16,6 @@ $author = new Author($connection);
 // Read all author entries from database
 $result = $author->read();
 
-// TODO error handling and messages
-
 // Check if any author results were returned
 if ($result->rowCount() > 0) {
     // Create an array to store authors data

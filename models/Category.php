@@ -87,14 +87,9 @@ class Category
         // Bind category
         $stmt->bindValue(':category', $this->category);
 
-        // Execute the statement
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            // Print an error if something goes wrong
-            printf("Error: %s.\n", $stmt->error);
-            return false;
-        }
+        // Execute the statement and check row count to see if any rows affected
+        // If the statement executes and affected a row, return true for success
+        return ($stmt->execute() && $stmt->rowCount());
     }
 
     // Update an existing category
@@ -119,17 +114,9 @@ class Category
         $stmt->bindValue(':category', $this->category);
         $stmt->bindValue(':id', $this->id);
 
-        // Execute the statement
-        if ($stmt->execute()) {
-            // Check if a row was updated
-            // TODO see if this works
-            if ($stmt->rowCount() === 1) return true;
-            else return false;
-        } else {
-            // Print an error if something goes wrong
-            printf("Error: %s.\n", $stmt->error);
-            return false;
-        }
+        // Execute the statement and check row count to see if any rows affected
+        // If the statement executes and affected a row, return true for success
+        return ($stmt->execute() && $stmt->rowCount());
     }
 
     // Delete Category
