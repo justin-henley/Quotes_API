@@ -27,10 +27,10 @@ class Quote
         if ($this->categoryId || $this->authorId) {
             $args = [];
             if ($this->categoryId) {
-                array_push($args, "categoryId = {$this->categoryId}");
+                array_push($args, "quotes.categoryId = {$this->categoryId}");
             }
             if ($this->authorId) {
-                array_push($args, "authorId = {$this->authorId}");
+                array_push($args, "quotes.authorId = {$this->authorId}");
             }
             $where = "WHERE " . implode(" AND ", $args);
         }
@@ -38,10 +38,10 @@ class Quote
 
         // Create query
         $query =
-            "SELECT *
-            FROM
-                {$this->table}
-            {$where}";
+            "SELECT quotes.id, quotes.quote, authors.author, categories.category 
+            FROM ((quotes
+            INNER JOIN authors ON quotes.authorId = authors.id)
+            INNER JOIN categories ON quotes.categoryId = categories.id)";
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
