@@ -38,7 +38,7 @@ class Quote
 
         // Create query
         $query =
-            "SELECT quotes.id, quotes.quote, authors.author, categories.category 
+            "SELECT quotes.id, quotes.quote, quotes.authorId, quotes.categoryId, authors.author, categories.category 
             FROM ((quotes
             INNER JOIN authors ON quotes.authorId = authors.id)
             INNER JOIN categories ON quotes.categoryId = categories.id)";
