@@ -125,7 +125,7 @@ class Quote
             SET
                 quote = :quote
                 authorId = :authorId
-                categoryId = :catgeoryId
+                categoryId = :categoryId
             WHERE
                 id = :id";
 
