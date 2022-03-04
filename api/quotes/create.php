@@ -97,7 +97,6 @@ if (empty($quote->quote) || empty($quote->authorId) || empty($quote->categoryId)
  * @param {PDO} connection - An existing PDO database connection
  * @return {boolean} - True if author exists in database
  */
-
 function authorExists($authorId, $connection)
 {
     // Create an author object
@@ -119,9 +118,16 @@ function authorExists($authorId, $connection)
  * @param {PDO} connection - An existing PDO database connection
  * @return {boolean} - True if author exists in database
  */
-
 function categoryExists($categoryId, $connection)
 {
-    // TODO
-    return false;
+    // Create an category object
+    $category = new Category($connection);
+    $category->id = $categoryId;
+
+    // Attempt to read that single category record
+    $category->readSingle();
+
+    // If an category name exists in the category object now, the record exists, return true
+    if ($category->category) return true;
+    else return false;
 }
