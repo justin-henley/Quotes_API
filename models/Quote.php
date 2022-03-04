@@ -24,21 +24,7 @@ class Quote
         // Build a WHERE statement if a category or author id is set
         $where = "";
 
-        /* // Both are set
-        if ($this->categoryId && $this->authorId) {
-            $where = "WHERE categoryId = {$this->categoryId} AND authorId = {$this->authorId}";
-        } else {
-            // Only one of the two is set
-            if ($this->categoryId) {
-                $where = "WHERE categoryId = {$this->categoryId}";
-            }
-            if ($this->authorId) {
-                $where = "WHERE authorId = {$this->authorId}";
-            }
-        } */
-        // TODO decide on which version and comment
-        // alt
-        if ($this->categoryId && $this->authorId) {
+        if ($this->categoryId || $this->authorId) {
             $args = [];
             if ($this->categoryId) {
                 array_push($args, "categoryId = {$this->categoryId}");
@@ -56,11 +42,6 @@ class Quote
             FROM
                 {$this->table}
             {$where}";
-
-        // TODO remove
-        echo json_encode(
-            "ids: " . $this->categoryId . $this->authorId . "where: " . $where . "\nquery: " . $query
-        );
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
