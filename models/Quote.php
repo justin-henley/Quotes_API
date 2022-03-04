@@ -63,7 +63,7 @@ class Quote
             INNER JOIN authors ON quotes.authorId = authors.id)
             INNER JOIN categories ON quotes.categoryId = categories.id)
             WHERE
-                id = :id
+                quotes.id = :id
             LIMIT 0,1";
 
         // Prepare the statement
