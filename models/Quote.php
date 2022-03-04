@@ -43,6 +43,8 @@ class Quote
             INNER JOIN authors ON quotes.authorId = authors.id)
             INNER JOIN categories ON quotes.categoryId = categories.id)";
 
+        // TODO remove
+        echo json_encode("where: " . $where . " query: " . $query);
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
 
