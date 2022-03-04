@@ -58,9 +58,10 @@ class Quote
     {
         // Create query
         $query =
-            "SELECT *
-            FROM
-                {$this->table}
+            "SELECT quotes.id, quotes.quote, quotes.authorId, quotes.categoryId, authors.author, categories.category 
+            FROM ((quotes
+            INNER JOIN authors ON quotes.authorId = authors.id)
+            INNER JOIN categories ON quotes.categoryId = categories.id)
             WHERE
                 id = :id
             LIMIT 0,1";
