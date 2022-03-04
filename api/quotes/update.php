@@ -34,6 +34,11 @@ if (empty($quote->id) || empty($quote->quote) || empty($quote->authorId) || empt
     echo json_encode([
         'message' => 'Missing Required Parameters'
     ]);
+} else if (!$quote->quoteExists()) {
+    // Quote does not exist to update
+    echo json_encode([
+        'message' => 'No Quotes Found'
+    ]);
 } else if (!$quote->authorExists()) {
     // Author not found in database
     echo json_encode([

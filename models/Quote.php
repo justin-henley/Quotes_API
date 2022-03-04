@@ -193,9 +193,9 @@ class Quote
     }
 
     /**
-     * Function to check if an categoryId exists in the database
+     * Function to check if a categoryId exists in the database
      * 
-     * @return {boolean} - True if author exists in database
+     * @return {boolean} - True if category exists in database
      */
     public function categoryExists()
     {
@@ -210,6 +210,27 @@ class Quote
 
         // If an category name exists in the category object now, the record exists, return true
         if ($category->category) return true;
+        else return false;
+    }
+
+    /**
+     * Function to check if a quote exists in the database
+     * 
+     * @return {boolean} - True if author exists in database
+     */
+    public function quoteExists()
+    {
+        include_once '../../models/Category.php';
+
+        // Create an empty Quote object to hold results
+        $newQuote = new Quote($this->conn);
+        $newQuote->id = $this->id;
+
+        // Attempt to read that single category record
+        $newQuote->readSingle();
+
+        // If an category name exists in the category object now, the record exists, return true
+        if ($newQuote->quote) return true;
         else return false;
     }
 }
