@@ -24,6 +24,7 @@ class Quote
         // Build a WHERE statement if a category or author id is set
         $where = "";
 
+        // TODO take out references and clean the entries before binding
         if ($this->categoryId || $this->authorId) {
             $args = [];
             if ($this->categoryId) {
