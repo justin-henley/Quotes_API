@@ -136,6 +136,11 @@ class Author
 
         // Execute the statement and check row count to see if any rows affected
         // If the statement executes and affected a row, return true for success
-        return ($stmt->execute() && $stmt->rowCount());
+        try {
+            return ($stmt->execute() && $stmt->rowCount());
+        } catch (Exception $e) {
+            // Null signifies failure of the delete operation
+            return null;
+        }
     }
 }

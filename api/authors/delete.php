@@ -27,14 +27,23 @@ if (empty($author->id)) {
     echo json_encode([
         'message' => 'Missing Required Parameters'
     ]);
-} else if ($author->delete()) {
-    // Delete operation successful
-    echo json_encode([
-        'id' => $author->id
-    ]);
 } else {
-    // Delete operation failed
-    echo json_encode([
-        'message' => 'No Authors Found'
-    ]);
+    $result = $author->delete();
+
+    if ($result === true) {
+        // Delete operation successful
+        echo json_encode([
+            'id' => $author->id
+        ]);
+    } else if ($result === false) {
+        // Delete operation found no author with that id
+        echo json_encode([
+            'message' => 'No Authors Found'
+        ]);
+    } else {
+        // Delete opreation called on an author that is used in a quote
+        echo json_encode([
+            'message' => 'Author cannot be deleted'
+        ]);
+    }
 }
