@@ -138,8 +138,8 @@ class Author
         // If the statement executes and affected a row, return true for success
         $result = null;
         try {
-            $result = $stmt->execute();
-            $result = ($result && $stmt->rowCount());
+            $stmt->execute();
+            $result = !!$stmt->rowCount();
         } catch (Exception $e) {
             // Null signifies failure of the delete operation
             $result = null;
