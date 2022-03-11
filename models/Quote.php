@@ -27,17 +27,7 @@ class Quote
 
         // Build a WHERE statement if a category or author id is set
         $where = "";
-        // TODO remove commented code
-        /* if ($this->categoryId || $this->authorId) {
-            $args = [];
-            if ($this->categoryId) {
-                array_push($args, "quotes.categoryId = {$this->categoryId}");
-            }
-            if ($this->authorId) {
-                array_push($args, "quotes.authorId = {$this->authorId}");
-            }
-            $where = "WHERE " . implode(" AND ", $args);
-        } */
+
         if ($this->categoryId || $this->authorId) {
             $args = [];
             if ($this->categoryId) {
@@ -48,7 +38,6 @@ class Quote
             }
             $where = "WHERE " . implode(" AND ", $args);
         }
-
 
         // Create query
         $query =
