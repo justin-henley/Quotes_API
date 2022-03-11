@@ -139,7 +139,7 @@ class Author
         $result = null;
         try {
             $stmt->execute();
-            $result = !!$stmt->rowCount();
+            $result = ($stmt->rowCount() === 0) ? false : true;
         } catch (Exception $e) {
             // Null signifies failure of the delete operation
             $result = null;
