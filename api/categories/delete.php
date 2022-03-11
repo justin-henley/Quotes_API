@@ -27,14 +27,23 @@ if (empty($category->id)) {
     echo json_encode([
         'message' => 'Missing Required Parameters'
     ]);
-} else if ($category->delete()) {
-    // Delete operation successful
-    echo json_encode([
-        'id' => $category->id
-    ]);
 } else {
-    // Delete operation failed
-    echo json_encode([
-        'message' => 'No Categories Found'
-    ]);
+    $result = $category->delete();
+
+    if ($result === true) {
+        // Delete operation successful
+        echo json_encode([
+            'id' => $category->id
+        ]);
+    } else if ($result === false) {
+        // Delete operation found no category with that id
+        echo json_encode([
+            'message' => 'No Categories Found'
+        ]);
+    } else {
+        // Delete opreation called on an category that is used in a quote
+        echo json_encode([
+            'message' => 'Category cannot be deleted'
+        ]);
+    }
 }
