@@ -21,17 +21,30 @@ class Quote
     // Read all quotes
     public function read()
     {
+        // Clean data before building the where clause
+        $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
+        $this->authorId = htmlspecialchars(strip_tags($this->authorId));
+
         // Build a WHERE statement if a category or author id is set
         $where = "";
-
-        // TODO take out references and clean the entries before binding
-        if ($this->categoryId || $this->authorId) {
+        // TODO remove commented code
+        /* if ($this->categoryId || $this->authorId) {
             $args = [];
             if ($this->categoryId) {
                 array_push($args, "quotes.categoryId = {$this->categoryId}");
             }
             if ($this->authorId) {
                 array_push($args, "quotes.authorId = {$this->authorId}");
+            }
+            $where = "WHERE " . implode(" AND ", $args);
+        } */
+        if ($this->categoryId || $this->authorId) {
+            $args = [];
+            if ($this->categoryId) {
+                array_push($args, "quotes.categoryId = :categoryId");
+            }
+            if ($this->authorId) {
+                array_push($args, "quotes.authorId = :authorId");
             }
             $where = "WHERE " . implode(" AND ", $args);
         }
@@ -48,6 +61,10 @@ class Quote
 
         // Prepare the statement
         $stmt = $this->conn->prepare($query);
+
+        // Bind values
+        if ($this->categoryId) $stmt->bindValue(':categoryId', $this->categoryId);
+        if ($this->authorId) $stmt->bindValue(':authorId', $this->authorId);
 
         // Execute the statement
         $stmt->execute();
