@@ -8,9 +8,6 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 include_once '../../config/Database.php';
 include_once '../../models/Quote.php';
 
-
-
-
 // Instantiate new DB and connect
 $database = new Database();
 $connection = $database->connect();

@@ -122,8 +122,6 @@ class Author
     // Delete author
     public function delete()
     {
-        // TODO fails if the author is a foreign key for a quote. Awaiting feedback on how to proceed.
-
         // Create query
         $query = "DELETE FROM {$this->table} WHERE id = :id";
 

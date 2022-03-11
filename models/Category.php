@@ -122,8 +122,6 @@ class Category
     // Delete Category
     public function delete()
     {
-        // TODO fails if the category is a foreign key for a quote. Awaiting feedback on how to proceed.
-
         // Create query
         $query = "DELETE FROM {$this->table} WHERE id = :id";
 
